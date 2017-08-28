@@ -2,31 +2,33 @@
     <br>
 
     <div class="container">
-        <form class="form-horizontal" role="form" method="post" id="Datos" >
+        <form action="/api/Datos/" enctype="application/x-www-form-urlencoded" class="form-horizontal" role="form" method="POST" id="Registro" >
+
             <div class="form-group">
                 <label for="Nombre" class="col-lg-2 control-label">Nombre</label>
                 <div class="col-lg-4">
-                    <input type="text" class="form-control" id="Nombre" placeholder="Nombre">
+                    <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Nombre" value=""/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="Categoria" class="col-lg-2 control-label">Categoria</label>
                 <div class="col-lg-4">
-                    <input type="text" class="form-control" id="Categoria" placeholder="Introduce tu categoria">
+                    <input type="text" class="form-control" id="Categoria" name="Categoria" placeholder="Introduce tu categoria" value=""/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="Descripcion" class="col-lg-2 control-label">Descripcion</label>
                 <div class="col-lg-4">
-                    <textarea class="form-control" id="Descripcion" placeholder="Introduce tu Descripcion" rows="3"></textarea>
+                    <input class="form-control" id="Descripcion" name="Descripcion" placeholder="Introduce tu Descripcion" value=""/>
                 </div>
             </div>
             
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <button type="submit" class="btn btn-success">Registrar Dato</button>
+                    <button type="submit" class="btn btn-success">Registrar Datos</button>
                 </div>
             </div>
+
         </form>
     </div>
 
@@ -35,19 +37,21 @@
         <h3 id="ResultadoRegistro"></h3>
     </div>
     
-
     <script type="text/javascript">
-        const formLogin = document.querySelector('#Datos')
-        const formData = new FormData(formLogin) //datos del formulario
-        formLogin.addEventListener('submit', event =>{
-            event.preventDefault() //no permite que la pagina recargue
-            fetch('/api/Datos/', { //trae los datos de la pagina del api
-                method : 'POST',
-                body : formData
-            })
-            .then(res => res.json()) //promesa que devuelve json
-            .then(data => {
-                document.getElementById("ResultadoRegistro").innerHTML = data.Mensaje;
-            })
-        })
+        //const formLogin = document.querySelector('#Registro')
+        //const formData = new FormData(formLogin)
+        //formLogin.addEventListener('submit', event => {
+            //event.preventDefault()
+            //fetch('/api/Datos/', {
+            //method: 'POST',
+            //body: formData
+            //})
+            //.then(res => res.json())
+            //.then(data => {
+            //    console.log(formData)
+            //    console.log(data)
+            //    document.getElementById("ResultadoRegistro").innerHTML = "Registrado Exitosamente! ";
+                //localStorage.setItem('token', data.token)
+            //})
+        //})  
     </script>
