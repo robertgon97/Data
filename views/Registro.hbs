@@ -1,8 +1,13 @@
     <h1 align="center">Registro de Data</h1>
     <br>
-
+    <script>
+        function borrar(){
+            setTimeout('document.fo3.reset()',2000);
+            return false;
+        }
+    </script>
     <div class="container">
-        <form action="/api/Datos/" enctype="application/x-www-form-urlencoded" class="form-horizontal" role="form" method="POST" id="Registro" >
+        <form action="/api/Datos/" enctype="application/x-www-form-urlencoded" class="form-horizontal" role="form" method="POST" id="fo3" name="fo3" onSubmit="return borrar()">
 
             <div class="form-group">
                 <label for="Nombre" class="col-lg-2 control-label">Nombre</label>
@@ -37,21 +42,22 @@
         <h3 id="ResultadoRegistro"></h3>
     </div>
     
-    <script type="text/javascript">
-        //const formLogin = document.querySelector('#Registro')
-        //const formData = new FormData(formLogin)
-        //formLogin.addEventListener('submit', event => {
-            //event.preventDefault()
-            //fetch('/api/Datos/', {
-            //method: 'POST',
-            //body: formData
-            //})
-            //.then(res => res.json())
-            //.then(data => {
-            //    console.log(formData)
-            //    console.log(data)
-            //    document.getElementById("ResultadoRegistro").innerHTML = "Registrado Exitosamente! ";
-                //localStorage.setItem('token', data.token)
-            //})
-        //})  
+    <script src="http://code.jquery.com/jquery-latest.js" language="javascript"></script>
+    <script language="javascript">
+    $(document).ready(function() {
+        // Interceptamos el evento submit
+        $('#form, #fat, #fo3').submit(function() {
+        // Enviamos el formulario usando AJAX
+            $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function(data) {
+                    $('#ResultadoRegistro').html(`Registrastes: ${data.Nombre}, ${data.Categoria}, ${data.Descripcion}`);
+
+                }
+            })
+            return false;
+        }); 
+    })
     </script>
